@@ -7,18 +7,34 @@
 		"vscode": "^1.63.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
 	"activationEvents": [
-        "onCommand:matrix42-setup-inf.helloWorld"
+		"onCommand:matrix42-setup-inf.insertInfo"
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "matrix42-setup-inf.helloWorld",
-            "title": "Hello World"
-
-		}]
+		"files.associations": {
+            "*.inf": "inf"
+        },
+        "languages": [{
+            "id": "inf",
+            "aliases": ["inf", "inf"],
+            "extensions": [".inf"],
+            "configuration": "./language-configuration.json"
+        }],
+		"grammars": [
+			{
+				"language": "inf",
+				"scopeName": "source.inf",
+				"path": "./inf.tmLanguage.json"
+			}
+		],		
+		"commands": [		{
+            "command": "matrix42-setup-inf.insertInfo",
+            "title": "Insert SetupInfo"
+		}
+	]
 	},
 	"scripts": {
 		"lint": "eslint .",
