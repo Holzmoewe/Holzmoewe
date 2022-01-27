@@ -10,7 +10,8 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"onCommand:matrix42-setup-inf.insertInfo"
+		"onCommand:matrix42-setup-inf.insertInfo",
+		"onCommand:matrix42-setup-inf.jumpSection"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -27,14 +28,33 @@
 			{
 				"language": "inf",
 				"scopeName": "source.inf",
-				"path": "./inf.tmLanguage.json"
+				"path": "./syntaxes/inf.tmLanguage.json"
 			}
 		],		
-		"commands": [		{
+		"commands": [		
+		{
             "command": "matrix42-setup-inf.insertInfo",
             "title": "Insert SetupInfo"
-		}
-	]
+		},
+		{
+            "command": "matrix42-setup-inf.jumpSection",
+            "title": "Jump to section"
+		}	
+	],
+		"menus": {
+			"editor/context": [
+			  {
+				"when": "resourceLangId == inf",
+				"command": "matrix42-setup-inf.jumpSection",
+				"group": "navigation"
+			  },
+			  {
+				"when": "resourceLangId == inf",
+				"command": "matrix42-setup-inf.insertInfo",
+				"group": "navigation"
+			  }			  
+			]
+		  }
 	},
 	"scripts": {
 		"lint": "eslint .",

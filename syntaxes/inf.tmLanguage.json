@@ -1,6 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "inf",
+	"fileTypes": [
+		"inf"
+	],
+	"scopeName": "source.inf",
 	"patterns": [
 		{
 			"include": "#comments"
@@ -16,6 +20,9 @@
 		},
 		{
 			"include": "#statements"
+		},
+		{
+			"include": "#keywords"
 		}
 	],
 	"repository": {
@@ -23,7 +30,7 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.assignment.inf",
-					"match": "(.*)(=)(.*)",
+					"match": "([A-Za-z0-9_]+[A-Za-z0-9_ ]*)(=)(.*)",
 					"captures": {
 						"1": {
 							"name": "variable.name.inf"
@@ -92,7 +99,18 @@
 					"name": "constant.character.escape.inf"
 				}
 			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match":"(?i)\\b(else|for|if|return|endif|then)\\b",
+					"name":"keyword.control.inf"
+				},
+				{
+					"match":"#([^\n,]*)",
+					"name":"keyword.control.inf"
+				}
+			]
 		}
-	},
-	"scopeName": "source.inf"
+	}
 }

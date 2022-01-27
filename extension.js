@@ -44,8 +44,42 @@ function activate(context) {
 		}
 	)
 	});	
-
 	context.subscriptions.push(dispInsertInfo);
+
+	let dispJumpSection = vscode.commands.registerCommand('matrix42-setup-inf.jumpSection', function () {
+		let editor = vscode.window.activeTextEditor;
+
+		if (!editor)
+			return;
+	
+		let selection = editor.selection;
+		let text = editor.document.lineAt(selection.start).text;
+
+		if (!text.startsWith('#'))
+			return;
+
+		let target = text.split(',', 1);
+		
+		if (target[0] === '')
+			return;
+
+		// let section = '\[' + target[0].substring(1) + '\]';
+		// //let position = editor.document.getText().indexOf(section);
+		// let reg = new RegExp(section);
+		// let pos = editor.document.getWordRangeAtPosition(new vscode.Position(0, 0), reg);
+
+
+		// let position = editor.selection.active;
+		// var newPosition = position.with(200, 0);
+        // var newSelection = new vscode.Selection(newPosition, newPosition);
+        // editor.selection = newSelection;
+
+		// //editor.revealRange(newSelection.range(), vscode.TextEditorRevealType.InCenter);
+
+		// vscode.window.showInformationMessage(position.toString());
+	});
+	context.subscriptions.push(dispJumpSection);
+
 }
 
 // this method is called when your extension is deactivated
